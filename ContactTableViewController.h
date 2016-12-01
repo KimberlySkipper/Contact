@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ContactTableViewController.h
 //  Contact
 //
 //  Created by Kimberly Skipper on 12/1/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ContactTableViewController : UITableViewController
 
 @end
-
