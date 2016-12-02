@@ -89,6 +89,48 @@
             [self.stateTextField becomeFirstResponder];
         }
     }
+    else if (self.stateTextField == textField)
+    {
+        if ([self.stateTextField.text length] == 2)
+        {
+            //NSCharacterSet *stateAbreviation = [NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+            NSCharacterSet *characterSet = [NSCharacterSet uppercaseLetterCharacterSet];
+
+            if ([self.stateTextField.text rangeOfCharacterFromSet:characterSet].location != NSNotFound)
+            {
+                canProceed = YES;
+                [self.zipTextField becomeFirstResponder];
+            }
+        }
+    }
+    else if (self.zipTextField == textField)
+    {
+        if ([self.zipTextField.text length] == 5)
+        {
+            NSCharacterSet *zipCode = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+            
+            if ([self.zipTextField.text rangeOfCharacterFromSet:zipCode].location != NSNotFound)
+            {
+                canProceed = YES;
+                [self.phoneTextField becomeFirstResponder];
+            }
+        }
+    }
+    else if (self.phoneTextField == textField)
+    {
+        if ([self.phoneTextField.text length] == 10)
+        {
+            NSCharacterSet *phoneNumberSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+            
+            if ([self.phoneTextField.text rangeOfCharacterFromSet:phoneNumberSet].location != NSNotFound)
+            {
+                canProceed = YES;
+                [self.phoneTextField resignFirstResponder];
+            }
+        }
+    }
+
+        
         
     return NO;
 }
@@ -97,21 +139,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-//if (![self.agentNameTextField.text isEqualToString:@""] && ![self.agentPasswordTextField.text isEqualToString:@""])
-
-/*NSString *agentName = self.agentNameTextField.text;
-// Additional step(s) to remove only the last name
-NSString *lastName = [agentName componentsSeparatedByString:@" "][1];
-self.greetingLabel.text = [NSString stringWithFormat:@"Good evening, Agent %@", lastName]; */
+/*if ([self.releaseYearTextField.text length] == 4)
+{
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    if ([self.releaseYearTextField.text rangeOfCharacterFromSet:set].location != NSNotFound) */
 
 
