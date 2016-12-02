@@ -46,15 +46,28 @@
     
     if (self.nameTextField == textField)
     {
-        NSString *firstName = [self.nameTextField.text componentsSeparatedByString:@" "][0];
-        NSString *lastName =  [self.nameTextField.text componentsSeparatedByString:@" "][1];
-        if ((![firstName isEqualToString:@""]) && (![lastName isEqualToString:@""]))
+        NSArray *firstLastNameArray = [self.nameTextField.text componentsSeparatedByString:@" "];
+        /*[self.nameTextField.text componentsSeparatedByString:@" "]
+        subsitiute array name for the line of code above to clean up code and simplify understanding of code. */
+        
+        if (firstLastNameArray.count == 2)
         {
+        
+            NSString *firstName = firstLastNameArray[0];
+            NSString *lastName =  firstLastNameArray[1];
+            if ((![firstName isEqualToString:@""]) && (![lastName isEqualToString:@""]))
+            {
     
             [self.streetTextField becomeFirstResponder];
+            }
         }
     }
+    else if (self.streetTextField == textField)
+    {
+        NSArray *streetnameArray =[self.streetTextField.text componentsSeparatedByString:@" "];
+    }
     
+        
     return NO;
 }
 
