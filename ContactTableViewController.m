@@ -62,6 +62,7 @@
                 [self.streetTextField becomeFirstResponder];
             }
         }
+    
     }
     else if (self.streetTextField == textField)
     {
@@ -128,11 +129,18 @@
                 [self.phoneTextField resignFirstResponder];
             }
         }
+        
+    }
+    if (canProceed == NO)
+    {
+        self.tableView.backgroundColor = [UIColor redColor];
+    }
+    else
+    {
+        self.tableView.backgroundColor = [UIColor whiteColor];
     }
 
-        
-        
-    return NO;
+    return canProceed;
 }
 
 @end
