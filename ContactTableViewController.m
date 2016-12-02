@@ -45,6 +45,7 @@
 {
     BOOL canProceed = NO;
     
+    
     if (self.nameTextField == textField)
     {
         NSArray *firstLastNameArray = [self.nameTextField.text componentsSeparatedByString:@" "];
@@ -62,6 +63,16 @@
                 [self.streetTextField becomeFirstResponder];
             }
         }
+        
+        if (canProceed == NO)
+        {
+            self.nameTextField.backgroundColor = [UIColor redColor];
+        }
+        else
+        {
+            self.nameTextField.backgroundColor = [UIColor whiteColor];
+        }
+
     
     }
     else if (self.streetTextField == textField)
@@ -72,24 +83,63 @@
         {
             NSCharacterSet *streetNumbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
             
-            //NSString *streetName = streetNameArray[1];
-           // NSString *streetType = streetNameArray[2];
+             //NSString *streetName = streetNameArray[1];
+            // NSString *streetType = streetNameArray[2];
             
             if ([streetNameArray[0] rangeOfCharacterFromSet:streetNumbers].location != NSNotFound)
             {
-                canProceed =YES;
-                [self.cityTextField becomeFirstResponder];
+                NSCharacterSet *streetName = [NSCharacterSet characterSetWithCharactersInString:@"AaBbCcDdEeFfGgHhIiJjKkLlMnNnOoPpQqRrSsTtUuVvWwXxYyZz"];
+                
+                
+                if ([streetNameArray[1] rangeOfCharacterFromSet:streetName].location != NSNotFound)
+                {
+                    NSCharacterSet *streetType = [NSCharacterSet characterSetWithCharactersInString:@"AaBbCcDdEeFfGgHhIiJjKkLlMnNnOoPpQqRrSsTtUuVvWwXxYyZz"];
+                    
+                    if ([streetNameArray[2] rangeOfCharacterFromSet:streetType].location != NSNotFound)
+                    {
+                        canProceed =YES;
+                        [self.cityTextField becomeFirstResponder];
+                    }
+                }
+                
+                
             }
+            
+        }
+        
+        if (canProceed == NO)
+        {
+            self.streetTextField.backgroundColor = [UIColor redColor];
+        }
+        else
+        {
+            self.streetTextField.backgroundColor = [UIColor whiteColor];
         }
     }
+    
+    
     else if (self.cityTextField == textField)
     {
-        if (![self.cityTextField.text isEqualToString:@""])
+        NSCharacterSet *cityName = [NSCharacterSet characterSetWithCharactersInString:@"AaBbCcDdEeFfGgHhIiJjKkLlMnNnOoPpQqRrSsTtUuVvWwXxYyZz"];
+        
+        if ([self.cityTextField.text rangeOfCharacterFromSet:cityName].location != NSNotFound)
         {
            canProceed = YES;
             [self.stateTextField becomeFirstResponder];
         }
+        
+        if (canProceed == NO)
+        {
+            self.cityTextField.backgroundColor = [UIColor redColor];
+        }
+        else
+        {
+            self.cityTextField.backgroundColor = [UIColor whiteColor];
+        }
+
     }
+    
+    
     else if (self.stateTextField == textField)
     {
         if ([self.stateTextField.text length] == 2)
@@ -102,8 +152,21 @@
                 canProceed = YES;
                 [self.zipTextField becomeFirstResponder];
             }
+            
         }
+        
+        if (canProceed == NO)
+        {
+            self.stateTextField.backgroundColor = [UIColor redColor];
+        }
+        else
+        {
+            self.stateTextField.backgroundColor = [UIColor whiteColor];
+        }
+
     }
+    
+    
     else if (self.zipTextField == textField)
     {
         if ([self.zipTextField.text length] == 5)
@@ -116,7 +179,20 @@
                 [self.phoneTextField becomeFirstResponder];
             }
         }
+        
+        if (canProceed == NO)
+        {
+            self.zipTextField.backgroundColor = [UIColor redColor];
+        }
+        
+        else
+        {
+            self.zipTextField.backgroundColor = [UIColor whiteColor];
+        }
+
     }
+    
+    
     else if (self.phoneTextField == textField)
     {
         if ([self.phoneTextField.text length] == 10)
@@ -130,26 +206,28 @@
             }
         }
         
+        if (canProceed == NO)
+        {
+            self.phoneTextField.backgroundColor = [UIColor redColor];
+        }
+        else
+        {
+            self.phoneTextField.backgroundColor = [UIColor whiteColor];
+        }
+
+        
     }
-    if (canProceed == NO)
-    {
-        self.tableView.backgroundColor = [UIColor redColor];
-    }
-    else
-    {
-        self.tableView.backgroundColor = [UIColor whiteColor];
-    }
+    
+    
+    
 
     return canProceed;
 }
 
 @end
 
-
-
-/*if ([self.releaseYearTextField.text length] == 4)
-{
-    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-    if ([self.releaseYearTextField.text rangeOfCharacterFromSet:set].location != NSNotFound) */
+/*UITextField *myTextField;
+myTextField.borderStyle = UITextBorderStyleNone;
+myTextField.backgroundColor = [UIColor redColor]; */
 
 
