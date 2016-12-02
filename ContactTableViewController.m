@@ -43,6 +43,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    BOOL canProceed = NO;
     
     if (self.nameTextField == textField)
     {
@@ -57,16 +58,37 @@
             NSString *lastName =  firstLastNameArray[1];
             if ((![firstName isEqualToString:@""]) && (![lastName isEqualToString:@""]))
             {
-    
-            [self.streetTextField becomeFirstResponder];
+                canProceed = YES;
+                [self.streetTextField becomeFirstResponder];
             }
         }
     }
     else if (self.streetTextField == textField)
     {
-        NSArray *streetnameArray =[self.streetTextField.text componentsSeparatedByString:@" "];
+        NSArray *streetNameArray =[self.streetTextField.text componentsSeparatedByString:@" "];
+        
+        if (streetNameArray.count == 3)
+        {
+            NSCharacterSet *streetNumbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+            
+            //NSString *streetName = streetNameArray[1];
+           // NSString *streetType = streetNameArray[2];
+            
+            if ([streetNameArray[0] rangeOfCharacterFromSet:streetNumbers].location != NSNotFound)
+            {
+                canProceed =YES;
+                [self.cityTextField becomeFirstResponder];
+            }
+        }
     }
-    
+    else if (self.cityTextField == textField)
+    {
+        if (![self.cityTextField.text isEqualToString:@""])
+        {
+           canProceed = YES;
+            [self.stateTextField becomeFirstResponder];
+        }
+    }
         
     return NO;
 }
